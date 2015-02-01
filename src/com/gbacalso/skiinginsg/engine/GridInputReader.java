@@ -21,12 +21,21 @@ public class GridInputReader {
     private static final String FILE_NAME = "resources/map.txt";
     private static final String INPUT_DELIMITER = " ";
 
+    /**
+     * Gets the grid from input.
+     *
+     * @return the grid from input
+     */
     public static Grid getGridFromInput() {
         List<List<Cell>> cellGrid = new ArrayList<List<Cell>>();
         Grid grid = new Grid();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(FILE_NAME)));
             String line;
+
+            // first line of input file is for grid dimensions which will not be
+            // needed for this implementation, so read and ignore it.
+            reader.readLine();
 
             while ((line = reader.readLine()) != null) {
                 cellGrid.add(getCellListFromInputLine(line));

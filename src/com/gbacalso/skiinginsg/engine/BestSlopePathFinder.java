@@ -14,9 +14,8 @@ import com.gbacalso.skiinginsg.dataobject.Path;
  * @author gio
  */
 public class BestSlopePathFinder {
-
     private Grid grid = new Grid();
-	
+
     public BestSlopePathFinder(Grid grid) {
         super();
         this.grid = grid;
@@ -31,8 +30,9 @@ public class BestSlopePathFinder {
                 gridNavigator.setxPosition(x);
                 gridNavigator.setyPosition(y);
 
-                Path tempPath = navigatePotentialBestPath(new Path(), gridNavigator);
-                bestPath = getBetterPath(bestPath, tempPath);
+                if (gridNavigator.getCellAtCurrentPosition().isActive()) {
+                    bestPath = getBetterPath(bestPath, navigatePotentialBestPath(new Path(), gridNavigator));
+                }
             }
         }
         return bestPath;
@@ -42,6 +42,8 @@ public class BestSlopePathFinder {
         Path tempSubPath = new Path();
         tempSubPath.appendPath(bestPathSoFar);
         tempSubPath.appendCell(currentPosition.getCellAtCurrentPosition());
+
+        currentPosition.getCellAtCurrentPosition().setActive(false);
 
         Path bestPath = getBetterPath(bestPathSoFar, navigateDown(tempSubPath, currentPosition));
 
@@ -97,8 +99,7 @@ public class BestSlopePathFinder {
 
     }
 
-
-    private Path getBetterPath(Path pathA, Path pathB){
+    private Path getBetterPath(Path pathA, Path pathB) {
         if (pathA.getPathLength() < pathB.getPathLength()) {
             return pathB;
         }
@@ -109,14 +110,14 @@ public class BestSlopePathFinder {
 
         return pathA;
     }
-	
+
     /**
      * The main method.
      *
      * @param args
      *            the arguments
      */
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         Grid grid = new Grid();
         grid = GridInputReader.getGridFromInput();
 

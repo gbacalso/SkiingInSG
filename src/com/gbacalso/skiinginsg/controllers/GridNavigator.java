@@ -76,7 +76,7 @@ public class GridNavigator {
     }
 
     public boolean moveRight() {
-        if (xPosition == grid.getColumnCountAtRow(xPosition) - 1) {
+        if (xPosition >= grid.getColumnCountAtRow(yPosition) - 1) {
             return false;
         }
 
@@ -89,7 +89,7 @@ public class GridNavigator {
     }
 
     public boolean moveUp() {
-        if (yPosition == 0) {
+        if (yPosition == 0 || xPosition >= grid.getColumnCountAtRow(yPosition - 1)) {
             return false;
         }
 
@@ -102,7 +102,7 @@ public class GridNavigator {
     }
 
     public boolean moveDown() {
-        if (yPosition == grid.getRowCount() - 1) {
+        if (yPosition == grid.getRowCount() - 1 || xPosition >= grid.getColumnCountAtRow(yPosition + 1)) {
             return false;
         }
 

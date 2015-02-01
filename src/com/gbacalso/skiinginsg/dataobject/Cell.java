@@ -10,7 +10,7 @@ package com.gbacalso.skiinginsg.dataobject;
 public class Cell {
     private boolean isActive = false;
     private int value = 0;
-	
+
     public Cell() {
     }
 
@@ -19,15 +19,19 @@ public class Cell {
     }
 
     public int getValue() {
-		return value;
-	}
+        return value;
+    }
 
-	public boolean isActive() {
+    public boolean isActive() {
         return isActive;
     }
 
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
     public void setValue(int value) {
-		this.value = value;
+        this.value = value;
         this.isActive = true;
-	}
+    }
 }

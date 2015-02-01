@@ -6,7 +6,6 @@ package com.gbacalso.skiinginsg.dataobject;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Grid.
  *
@@ -39,8 +38,8 @@ public class Grid {
         return getRow(y).size();
     }
 
-	public int getRowCount() {
+    public int getRowCount() {
         return cellGrid.size();
-	}
+    }
 
 }
